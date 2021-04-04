@@ -123,7 +123,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdjacencyList.cpp" />
+    <ClCompile Include="AdjacencyMatrix.cpp" />
+    <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MinArray.cpp" />
+    <ClCompile Include="PriorityQueue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AdjacencyList.h" />
+    <ClInclude Include="AdjacencyMatrix.h" />
+    <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="Heap.h" />
+    <ClInclude Include="List.h" />
+    <ClInclude Include="MinArray.h" />
+    <ClInclude Include="PriorityQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
