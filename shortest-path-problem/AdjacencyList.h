@@ -7,10 +7,14 @@ private:
 	mySTL::List<Edge>*  m_AdjList;
 	int m_NumOfVertices;
 
+    void deleteAdjList();
+
 public:
 	AdjacencyList(int i_NumOfVertices = 0);
+    AdjacencyList(const AdjacencyList& other);
 	~AdjacencyList();
 
+    const AdjacencyList& operator=(const AdjacencyList& other);
 	virtual void MakeEmptyGraph(int i_NumOfVertices = 0);
 	virtual bool IsAdjacent(int i_Src, int i_Dest) const;
 	virtual mySTL::List<Edge> GetAdjList(int i_Src) const;
@@ -18,5 +22,6 @@ public:
 	virtual void RemoveEdge(int i_Src, int i_Dest);
 	virtual int getNumOfVertices() const { return m_NumOfVertices; };
 	virtual void PrintGraph() const;
+    
 };
 

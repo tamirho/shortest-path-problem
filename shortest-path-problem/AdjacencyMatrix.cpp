@@ -1,12 +1,16 @@
 #include "AdjacencyMatrix.h"
 #include <iostream>
 
-AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices){
+AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices) : m_Matrix(nullptr), m_NumOfVertices(0){
 	MakeEmptyGraph(i_NumOfVertices);
 }
 
 AdjacencyMatrix::~AdjacencyMatrix() {
 	deleteMatrix();
+}
+
+AdjacencyMatrix::AdjacencyMatrix(const AdjacencyMatrix& other) : m_Matrix(nullptr), m_NumOfVertices(0) {
+    *this = other;
 }
 
 void AdjacencyMatrix::deleteMatrix() {
@@ -17,13 +21,16 @@ void AdjacencyMatrix::deleteMatrix() {
 		delete[] m_Matrix;
 		m_NumOfVertices = 0;
 	}
+    
+    m_Matrix = nullptr;
 }
 
 void AdjacencyMatrix::MakeEmptyGraph(int i_NumOfVertices) {
 	deleteMatrix();
 
+    m_NumOfVertices = i_NumOfVertices;
 	m_Matrix = new int*[i_NumOfVertices];
-	m_NumOfVertices = i_NumOfVertices;
+
 	for (int i = 0; i < m_NumOfVertices; i++)
 	{
 		m_Matrix[i] = new int[m_NumOfVertices];
@@ -77,3 +84,18 @@ void AdjacencyMatrix::PrintGraph() const {
 		std::cout << std::endl;
 	}
 }
+
+const AdjacencyMatrix& AdjacencyMatrix::operator=(const AdjacencyMatrix& other) {
+    if (this != &other) {
+        MakeEmptyGraph(other.m_NumOfVertices);
+        for (int i = 0; i < other.m_NumOfVertices; i++)
+        {
+            for (int j = 0; j < other.m_NumOfVertices; j++) {
+                m_Matrix[i][j] = other.m_Matrix[i][j];
+            }
+        }
+    }
+    
+    return *this;
+}
+

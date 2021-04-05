@@ -1,15 +1,31 @@
 #include "AdjacencyList.h"
 
-AdjacencyList::AdjacencyList(int i_NumOfVertices){
+AdjacencyList::AdjacencyList(int i_NumOfVertices) : m_AdjList(nullptr), m_NumOfVertices(0){
 	MakeEmptyGraph(i_NumOfVertices);
 }
+
+AdjacencyList::AdjacencyList(const AdjacencyList& other) : m_AdjList(nullptr), m_NumOfVertices(0){
+    *this = other;
+}
+
 AdjacencyList::~AdjacencyList() {
-	delete[] m_AdjList;
+    deleteAdjList();
+}
+
+const AdjacencyList&  AdjacencyList::operator=(const AdjacencyList& other) {
+    if (this != &other) {
+        MakeEmptyGraph(other.m_NumOfVertices);
+        for (int i = 1; i <= other.m_NumOfVertices; i++) {
+            m_AdjList[i] = other.m_AdjList[i];
+        }
+    }
+    
+    return *this;
 }
 
 void AdjacencyList::MakeEmptyGraph(int i_NumOfVertices) {
-	delete[] m_AdjList;
-	m_NumOfVertices = i_NumOfVertices;
+    deleteAdjList();
+    m_NumOfVertices = i_NumOfVertices;
 	m_AdjList = new mySTL::List<Edge>[i_NumOfVertices + 1];
 }
 
@@ -65,4 +81,10 @@ void AdjacencyList::PrintGraph() const{
 		}
 		std::cout << std::endl;
 	}
+}
+
+void AdjacencyList::deleteAdjList() {
+    delete[] m_AdjList;
+    m_AdjList = nullptr;
+    m_NumOfVertices = 0;
 }
