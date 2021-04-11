@@ -6,8 +6,10 @@
 
 class GraphBuilder {
 public:
-    static Graph* BuildAdjListFromFile(const char* i_filePath, int& o_sourceVertex, int& o_destVertex);
-    static Graph* BuildAdjMatrixFromFile(const char* i_filePath, int& o_sourceVertex, int& o_destVertex);
+    static Graph* BuildAdjListFromFile(const char* i_FilePath, int& o_Source, int& o_Target);
+    static Graph* BuildAdjMatrixFromFile(const char* i_FilePath, int& o_Source, int& o_Target);
 private:
-    static void BuildGraphFromFile(Graph* graph, const char* i_filePath, int& o_sourceVertex, int& o_destVertex);
+    static void buildGraphFromFile(Graph& graph, const char* i_FilePath, int& o_Source, int& o_Target);
+    static int getIntFromLine(const std::string& i_Str);
+    static Edge getEdgeFromLine(const std::string& i_Str);
 };

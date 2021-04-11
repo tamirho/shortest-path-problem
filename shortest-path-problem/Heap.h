@@ -20,7 +20,7 @@ class Heap : public PriorityQueue {
         void Build(Pair** i_InitArray, int i_SizeOfArr) override;
         bool IsEmpty() const override { return m_HeapSize == 0; }
         void makeEmpty() { m_HeapSize = 0; }
-        void DecreaseKey(int i_Place, int i_NewKey) override;
+//        void DecreaseKey(int i_Place, int i_NewKey) override;
         Pair DeleteMin() override;
 
 //		Pair* getMin() { return _heapSize ? _data[0] : nullptr; }
