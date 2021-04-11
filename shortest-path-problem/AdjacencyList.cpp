@@ -43,10 +43,20 @@ mySTL::List<Edge> AdjacencyList::GetAdjList(int i_Src) const {
 	return m_AdjList[i_Src];
 }
 
+mySTL::List<Edge> AdjacencyList::GetEdgeList() const {
+    mySTL::List<Edge> EdgeList;
+    
+    for (int i = 1; i <= m_NumOfVertices; i++) {
+        for (const auto& edge : m_AdjList[i]) {
+            EdgeList.push_back(edge);
+        }
+    }
+    
+    return EdgeList;
+}
+
+
 void AdjacencyList::AddEdge(int i_Src, int i_Dest, int i_Weight) {
-	if (i_Weight < 0) {
-		throw std::invalid_argument("Invalid weight");
-	}
 	if (i_Src == i_Dest) {
 		throw std::invalid_argument("A Simple graph cannot contain loop");
 	}

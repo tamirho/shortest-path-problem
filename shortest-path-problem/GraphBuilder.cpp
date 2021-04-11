@@ -29,6 +29,10 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, const char* i_FilePath, int&
         
         std::getline(inputFile, line);
         Edge currEdge = getEdgeFromLine(line);
+//        if (currEdge.m_Weight < 0) {
+//            throw std::invalid_argument("Invalid weight");
+//        }
+//        
         graph.AddEdge(currEdge);
     }
     
