@@ -1,9 +1,6 @@
-//
-//  FordBaseAlgorithm.cpp
-//  shortest-path-problem
-//
-//  Created by Yuval  Yakovskind  on 11/04/2021.
-//  Copyright © 2021 Yuval Yakovskind. All rights reserved.
-//
-
 #include "FordBaseAlgorithm.h"
+
+FordBaseAlgorithm::FordBaseAlgorithm() : m_DistanceFromSrc(nullptr), m_Parent(nullptr) {
+}
+
+

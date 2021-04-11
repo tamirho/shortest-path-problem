@@ -1,5 +1,7 @@
 #pragma once
 #include <fstream>
+#include <string>
+#include <sstream>
 #include "AdjacencyList.h"
 #include "AdjacencyMatrix.h"
 

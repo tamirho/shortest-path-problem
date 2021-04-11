@@ -113,3 +113,6 @@ const AdjacencyMatrix& AdjacencyMatrix::operator=(const AdjacencyMatrix& other) 
     return *this;
 }
 
+const std::string AdjacencyMatrix::GetGraphType() const {
+    return "Matrix";
+}

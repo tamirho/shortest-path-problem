@@ -1,5 +1,4 @@
 #pragma once
-#include <fstream>
 #include "List.h"
 
 struct Edge {
@@ -20,6 +19,7 @@ public:
 	virtual void RemoveEdge(int i_Src, int i_Dest) = 0;
 	virtual int getNumOfVertices() const = 0;
 	virtual void PrintGraph() const = 0;
+    virtual const std::string GetGraphType() const = 0;
 
 	static const int EMPTY = -1;
 };

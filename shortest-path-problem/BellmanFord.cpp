@@ -1,8 +1,6 @@
 #include "BellmanFord.h"
 using namespace mySTL;
 
-BellmanFord::BellmanFord() : m_DistanceFromSrc(nullptr), m_Parent(nullptr) {
-}
 
 BellmanFord::~BellmanFord() {
     
@@ -58,4 +56,8 @@ void BellmanFord::Relax(int i_Src, int i_Dest, int i_Weight) {
             m_Parent[i_Dest] = i_Src;
         }
     }
+}
+
+std::string BellmanFord::GetAlgorithmName() const {
+    return "Bellman Ford";
 }

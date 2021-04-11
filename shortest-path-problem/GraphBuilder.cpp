@@ -1,6 +1,5 @@
 #include "GraphBuilder.h"
-#include <string>
-#include <sstream>
+
 
 void GraphBuilder::buildGraphFromFile(Graph& graph, const char* i_FilePath, int& o_Source, int& o_Target) {
     
@@ -29,10 +28,10 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, const char* i_FilePath, int&
         
         std::getline(inputFile, line);
         Edge currEdge = getEdgeFromLine(line);
-//        if (currEdge.m_Weight < 0) {
-//            throw std::invalid_argument("Invalid weight");
-//        }
-//        
+        if (currEdge.m_Weight < 0) {
+            throw std::invalid_argument("Invalid weight");
+        }
+        
         graph.AddEdge(currEdge);
     }
     
