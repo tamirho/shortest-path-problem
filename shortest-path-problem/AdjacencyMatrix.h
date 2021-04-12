@@ -23,7 +23,7 @@ public:
 	virtual void RemoveEdge(int i_Src, int i_Dest) override;
 	virtual int getNumOfVertices() const override { return m_NumOfVertices; };
 	virtual void PrintGraph() const override;
-    const std::string GetGraphType() const override;
+    virtual std::string GetGraphType() const override;
 
     
 };

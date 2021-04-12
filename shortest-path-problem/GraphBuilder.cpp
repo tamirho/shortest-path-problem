@@ -1,32 +1,30 @@
 #include "GraphBuilder.h"
 
 
-void GraphBuilder::buildGraphFromFile(Graph& graph, const char* i_FilePath, int& o_Source, int& o_Target) {
+void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     
-    std::ifstream inputFile;
-    inputFile.open(i_FilePath);
     std::string line;
 
-    if (!inputFile) {
+    if (!i_InputFile) {
         throw std::invalid_argument("Error with inputFile!");
     }
     
-    std::getline(inputFile, line);
+    std::getline(i_InputFile, line);
     int numOfVertices = getIntFromLine(line);
-    std::getline(inputFile, line);
+    std::getline(i_InputFile, line);
     o_Source = getIntFromLine(line);
-    std::getline(inputFile, line);
+    std::getline(i_InputFile, line);
     o_Target = getIntFromLine(line);
     
     graph.MakeEmptyGraph(numOfVertices);
     
-    while(!inputFile.eof()) {
+    while(!i_InputFile.eof()) {
         
-        if (!inputFile.good()) {
+        if (!i_InputFile.good()) {
             throw std::invalid_argument("Error with inputFile!");
         }
         
-        std::getline(inputFile, line);
+        std::getline(i_InputFile, line);
         Edge currEdge = getEdgeFromLine(line);
         if (currEdge.m_Weight < 0) {
             throw std::invalid_argument("Invalid weight");
@@ -34,20 +32,19 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, const char* i_FilePath, int&
         
         graph.AddEdge(currEdge);
     }
-    
-    inputFile.close();
+
 }
 
-Graph* GraphBuilder::BuildAdjListFromFile(const char* i_FilePath, int& o_Source, int& o_Target) {
+Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     Graph* newGraph = new AdjacencyList();
-    buildGraphFromFile(*newGraph, i_FilePath, o_Source, o_Target);
+    buildGraphFromFile(*newGraph, i_InputFile, o_Source, o_Target);
     
     return newGraph;
 }
 
-Graph* GraphBuilder::BuildAdjMatrixFromFile(const char* i_FilePath, int& o_Source, int& o_Target) {
+Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     Graph* newGraph = new AdjacencyMatrix();
-    buildGraphFromFile(*newGraph, i_FilePath, o_Source, o_Target);
+    buildGraphFromFile(*newGraph, i_InputFile, o_Source, o_Target);
         
     return newGraph;
 }

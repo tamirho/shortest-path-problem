@@ -7,7 +7,7 @@ protected:
     void Relax(int i_Src, int i_Dest, int i_Weight) override;
 public:
     BellmanFord() = default;
-    ~BellmanFord();
+    virtual ~BellmanFord();
 
     bool Process(const Graph& i_Grpah, int i_SrcVertex) override;
     virtual std::string GetAlgorithmName() const override;

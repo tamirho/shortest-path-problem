@@ -1,0 +1,17 @@
+Matrix Bellman Ford 40.458859 sec
+Matrix Bellman Ford 73.352279 sec
+Matrix Bellman Ford 56.978721 sec
+Matrix Bellman Ford 2.868748 sec
+Matrix Bellman Ford 18.092410 sec
+Matrix Bellman Ford 16.535357 sec
+Matrix Bellman Ford 11.048926 sec
+Matrix Bellman Ford 1.588194 sec
+Matrix Bellman Ford 1.603874 sec
+Matrix Bellman Ford 1.376061 sec
+Matrix Bellman Ford 0.000015 sec
+Matrix Bellman Ford 0.000016 sec
+Matrix Bellman Ford 39.312893 sec
+Matrix Bellman Ford 1.476445 sec
+Adjacency Bellman Ford 1.527442900 sec
+Adjacency Bellman Ford 0.000016 sec
+Matrix Bellman Ford 0.000015600 sec

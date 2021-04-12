@@ -125,8 +125,10 @@
   <ItemGroup>
     <ClCompile Include="AdjacencyList.cpp" />
     <ClCompile Include="AdjacencyMatrix.cpp" />
+    <ClCompile Include="BellmanFord.cpp" />
     <ClCompile Include="FileHandler.cpp" />
-    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="FordBaseAlgorithm.cpp" />
+    <ClCompile Include="GraphBuilder.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MinArray.cpp" />
@@ -135,8 +137,11 @@
   <ItemGroup>
     <ClInclude Include="AdjacencyList.h" />
     <ClInclude Include="AdjacencyMatrix.h" />
+    <ClInclude Include="BellmanFord.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FordBaseAlgorithm.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphBuilder.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="MinArray.h" />

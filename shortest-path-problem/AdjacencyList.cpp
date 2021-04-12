@@ -99,6 +99,6 @@ void AdjacencyList::deleteAdjList() {
     m_NumOfVertices = 0;
 }
 
-const std::string AdjacencyList::GetGraphType() const {
+std::string AdjacencyList::GetGraphType() const {
     return "Adjacency";
 }
