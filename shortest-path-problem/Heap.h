@@ -4,27 +4,26 @@
 
 class Heap : public PriorityQueue {
 	private:
-		Pair** m_Data;
+		Pair* m_Data;
+		int* m_Indexes;
 		int m_MaxSize;
 		int m_HeapSize;
-		bool m_Allocated;
 		static int Left(int node);
 		static int Right(int node);
 		static int Parent(int node);
 		void fixHeap(int node);
+		void swap(int i_A, int i_B);
+		bool compareFixHeapPriority(int i_A, int i_B) const;
 	public:
-		Heap(int max);
-		Heap(Pair**, int size);
+		Heap();
 		~Heap();
 
-        void Build(Pair** i_InitArray, int i_SizeOfArr) override;
+        void Build(int* i_InitArray, int i_NumOfVertices) override;
         bool IsEmpty() const override { return m_HeapSize == 0; }
         void makeEmpty() { m_HeapSize = 0; }
-//        void DecreaseKey(int i_Place, int i_NewKey) override;
-        Pair DeleteMin() override;
-
-//		Pair* getMin() { return _heapSize ? _data[0] : nullptr; }
-//		bool insert(Pair*);
+        void DecreaseKey(int i_Vertex, int i_NewKey) override;
+        int DeleteMin() override;
+		std::string GetPriorityQueueName() const override;
 
 };
 

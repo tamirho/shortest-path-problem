@@ -4,10 +4,14 @@
 #include <fstream>
 #include "GraphBuilder.h"
 #include "BellmanFord.h"
+#include "Dijkstra.h"
+#include "Heap.h"
+#include "MinArray.h"
 
 using namespace std;
 
 void RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Traget, ostream& i_OutFile);
+
 int main(int argc, char* argv[]) {
     
 	int src, target;
@@ -37,16 +41,19 @@ int main(int argc, char* argv[]) {
 	try {
 		outputFile.open(argv[2], ios::app);
         
+		Heap heap;
+		MinArray minArray;
+
+		Dijkstra dijkstraHeapAlgorithm(heap);
+		Dijkstra dijkstraArrayAlgorithm(minArray);
 		BellmanFord bellmanFordAlgorithm;
-		//DijkstraHeap dijkstraHeapAlgorithm;
-		//DijkstraArray dijkstraArrayAlgorithm
-		
-		//RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjList, src, target, outputFile);
-		//RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjList, src, target, outputFile);
+
+		RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjList, src, target, outputFile);
+		RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjList, src, target, outputFile);
 		RunAndMeassureAlgorithm(bellmanFordAlgorithm, *adjList, src, target, outputFile);
 
-		//RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjMatrix, src, target, outputFile);
-		//RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjMatrix, src, target, outputFile);
+		RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjMatrix, src, target, outputFile);
+		RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjMatrix, src, target, outputFile);
 		RunAndMeassureAlgorithm(bellmanFordAlgorithm, *adjMatrix, src, target, outputFile);
 
 		outputFile.close();
@@ -86,7 +93,7 @@ void RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph
 	cout << i_AlgorithmFunction.GetWeightOfShortestPathToTarget(i_Traget) << endl;
 
 	if (!i_OutFile) {
-		throw std::invalid_argument("Error with inputFile!");
+		throw std::invalid_argument("Error with output file!");
 	}
 
 	// File output

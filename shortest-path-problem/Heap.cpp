@@ -1,28 +1,36 @@
 #include "Heap.h"
 
-Heap::Heap(int max) : m_Allocated(true), m_MaxSize(max), m_HeapSize(0), m_Data(new Pair*[max]) {
+Heap::Heap() : m_MaxSize(0), m_HeapSize(0), m_Data(nullptr), m_Indexes(nullptr){
 }
 
-Heap::Heap(Pair** i_InitArray, int i_SizeOfArr) : m_Allocated(false), m_MaxSize(i_SizeOfArr), m_HeapSize(i_SizeOfArr), m_Data(i_InitArray) {
-    Build(i_InitArray, i_SizeOfArr);
-}
+void Heap::Build(int* i_InitArray, int i_NumOfVertices) {
+	m_Data = new Pair[i_NumOfVertices];
+	m_Indexes = new int[i_NumOfVertices + 1];
+	m_HeapSize = m_MaxSize = i_NumOfVertices;
 
-void Heap::Build(Pair** i_InitArray, int i_SizeOfArr) {
-    if (m_Allocated) {
-        delete[] m_Data;
-    }
-    
-    m_Allocated = false;
-    for (int i = i_SizeOfArr / 2 - 1; i >= 0; i--) {
+	m_Indexes[0] = -1;
+	for (int i = 0; i < i_NumOfVertices; i++) {
+		m_Data[i].m_Vertex = i + 1;
+		m_Data[i].m_Key = i_InitArray[i + 1];
+		m_Indexes[i + 1] = i;
+	}
+
+    for (int i = m_HeapSize / 2 - 1; i >= 0; i--) {
             fixHeap(i);
     }
 }
 
 Heap::~Heap() {
-	if (m_Allocated) {
+	if (m_Data != nullptr) {
 		delete[] m_Data;
 	}
+	
+	if (m_Indexes != nullptr) {
+		delete[] m_Indexes;
+	}
+
 	m_Data = nullptr;
+	m_Indexes = nullptr;
 }
 
 int Heap::Left(int i_Place) {
@@ -39,55 +47,69 @@ int Heap::Parent(int i_Place) {
 
 void Heap::fixHeap(int i_Place) {
 
-	int min;
-
 	while (true) {
+		int min;
 		int left = Left(i_Place);
 		int right = Right(i_Place);
-
-		if ((left < m_HeapSize) && (m_Data[left]->m_Key < m_Data[i_Place]->m_Key))
+		
+		if ((left < m_HeapSize) && compareFixHeapPriority(left,i_Place)) {
 			min = left;
-		else min = i_Place;
-		if ((right < m_HeapSize) && (m_Data[right]->m_Key < m_Data[min]->m_Key))
+		}
+		else {
+			min = i_Place;
+		}
+		if ((right < m_HeapSize) && compareFixHeapPriority(right, min)) {
 			min = right;
+		}
 
 		if (min == i_Place)
 			break;
 		else {
-			Pair* temp = m_Data[i_Place];
-			m_Data[i_Place] = m_Data[min];
-			m_Data[min] = temp;
+			swap(i_Place, min);
 			i_Place = min;
 		}
 	}
 }
 
-Pair Heap::DeleteMin() {
-	if (m_HeapSize < 1)
-		throw std::runtime_error("Invalid operation");
+bool Heap::compareFixHeapPriority(int i_A, int i_B) const{
+	return (m_Data[i_A].m_Key != Nan) && (m_Data[i_A].m_Key < m_Data[i_B].m_Key || m_Data[i_B].m_Key == Nan);
+}
 
-	Pair res = *(m_Data[0]);
+int Heap::DeleteMin() {
+	if (IsEmpty()) {
+		throw std::runtime_error("Invalid operation");
+	}
+	Pair res = m_Data[0];
 	m_HeapSize--;
 	m_Data[0] = m_Data[m_HeapSize];
 	fixHeap(0);
-	return res;
+	return res.m_Vertex;
 }
 
-//bool Heap::insert(Node* newNode) {
-//
-//	if (m_HeapSize == m_MaxSize)
-//		return false;
-//
-//	int i = m_HeapSize;
-//	m_HeapSize++;
-//
-//	while ((i > 0) && m_Data[Parent(i)]->m_Key > newNode->m_Key) {
-//		m_Data[i] = m_Data[Parent(i)];
-//		i = Parent(i);
-//	}
-//
-//	m_Data[i] = newNode;
-//	return true;
-//}
-//
 
+void Heap::DecreaseKey(int i_Vertex, int i_NewKey) {
+	if (i_Vertex > m_MaxSize || i_Vertex < 0) {
+		throw std::runtime_error("Invalid operation");
+	}
+	int place = m_Indexes[i_Vertex];
+	m_Data[place].m_Key = i_NewKey;
+
+	while ((place > 0) && (m_Data[Parent(place)].m_Key == Nan || m_Data[Parent(place)].m_Key > m_Data[place].m_Key))
+	{
+		swap(place, Parent(place));
+		place = Parent(place);
+	}
+}
+
+std::string Heap::GetPriorityQueueName() const {
+	return "heap";
+}
+
+void Heap::swap(int i_A, int i_B)
+{
+	Pair temp = m_Data[i_A];
+	m_Data[i_A] = m_Data[i_B];
+	m_Data[i_B] = temp;
+	m_Indexes[m_Data[i_A].m_Vertex] = i_A;
+	m_Indexes[m_Data[i_B].m_Vertex] = i_B;
+}
