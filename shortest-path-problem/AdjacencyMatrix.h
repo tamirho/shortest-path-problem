@@ -24,7 +24,5 @@ public:
 	virtual int getNumOfVertices() const override { return m_NumOfVertices; };
 	virtual void PrintGraph() const override;
     virtual std::string GetGraphType() const override;
-
-    
 };
 

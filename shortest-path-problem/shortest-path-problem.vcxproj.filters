@@ -33,9 +33,6 @@
     <ClCompile Include="MinArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BellmanFord.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Dijkstra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +68,6 @@
     <ClInclude Include="MinArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Dijkstra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Program.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

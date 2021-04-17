@@ -6,6 +6,9 @@ struct Edge {
 };
 
 class Graph {
+protected:
+	static const int EMPTY = -1;
+
 public:
 	Graph() = default;
 	virtual ~Graph() = default;
@@ -20,7 +23,5 @@ public:
 	virtual int getNumOfVertices() const = 0;
 	virtual void PrintGraph() const = 0;
     virtual std::string GetGraphType() const = 0;
-
-	static const int EMPTY = -1;
 };
 

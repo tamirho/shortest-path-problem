@@ -127,27 +127,28 @@
     <ClCompile Include="AdjacencyMatrix.cpp" />
     <ClCompile Include="BellmanFord.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
-    <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FordBaseAlgorithm.cpp" />
     <ClCompile Include="GraphBuilder.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MinArray.cpp" />
     <ClCompile Include="PriorityQueue.cpp" />
+    <ClCompile Include="Program.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdjacencyList.h" />
     <ClInclude Include="AdjacencyMatrix.h" />
     <ClInclude Include="BellmanFord.h" />
     <ClInclude Include="Dijkstra.h" />
-    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="FordBaseAlgorithm.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphBuilder.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MinArray.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="Program.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

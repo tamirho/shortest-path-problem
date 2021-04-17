@@ -7,7 +7,7 @@ protected:
 	static const int Nan = INT_MIN;
 
 	struct Pair {
-		int m_Key, m_Vertex; // key = weight , data = vertex num
+		int m_Key, m_Vertex;
 	};
 
 public:

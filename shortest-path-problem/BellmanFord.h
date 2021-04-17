@@ -10,5 +10,4 @@ public:
 
     void Process(const Graph& i_Grpah, int i_SrcVertex) override;
     virtual std::string GetAlgorithmName() const override;
-
 };

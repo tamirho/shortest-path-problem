@@ -5,9 +5,9 @@
 class Dijkstra : public FordBaseAlgorithm
 {
 private:
-		PriorityQueue& m_PriorityQueue;
+	PriorityQueue& m_PriorityQueue;
 
-		virtual void Relax(int i_Src, int i_Dest, int i_Weight) override;
+	virtual void Relax(int i_Src, int i_Dest, int i_Weight) override;
 public:
 	Dijkstra(PriorityQueue& i_PriorityQueue);
 	virtual ~Dijkstra() = default;
