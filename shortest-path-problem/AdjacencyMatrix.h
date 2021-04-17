@@ -1,6 +1,11 @@
 #pragma once
 #include "Graph.h"
 
+/*
+    A class that represents a finite graph consisting of neighboring matrix.
+    m_Matrix[i][j] = if 'EMPTY' - there is no edge from i to j
+                     else the weight of the edge from i to j
+*/
 class AdjacencyMatrix : public Graph
 {
 private:

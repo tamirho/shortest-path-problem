@@ -13,7 +13,7 @@ private:
 	GraphBuilder() = default;
 
 	/*
-		A function that constructs a graph from a file according to the following format.
+		A function that constructs a graph from a file according to the following format:
 		3 Integers that represent the number of vertices, the source vertex and the target vertex.
 		After that each line represent a new edge in the graph with the values - source, destination and weight.
 		Input: Graph(ref) , File(ref) and two output parameters for source and target vertices.
