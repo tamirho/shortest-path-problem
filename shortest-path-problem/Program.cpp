@@ -26,7 +26,7 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
 
 	ofstream outputFile;
 	try {
-		outputFile.open(i_Outputfile, ios::app);
+		outputFile.open(i_Outputfile);
 
 		Heap heap;
 		MinArray minArray;
@@ -60,10 +60,14 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
 void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Traget, ostream& i_OutFile)
 {
 	auto start = chrono::high_resolution_clock::now();
+
 	// unsync the I/O of C and C++.
 	ios_base::sync_with_stdio(false);
+
 	i_AlgorithmFunction.Process(i_Graph, i_Src);
+
 	auto end = chrono::high_resolution_clock::now();
+
 	// Calculating total time taken by the program.
 	double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
 	time_taken *= 1e-9;
@@ -78,8 +82,9 @@ void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, co
 	}
 
 	// File output
+	i_OutFile << "Time taken by function ";
 	i_OutFile << i_Graph.GetGraphType() << " ";
-	i_OutFile << i_AlgorithmFunction.GetAlgorithmName() << " ";
+	i_OutFile << i_AlgorithmFunction.GetAlgorithmName() << " is : ";
 	i_OutFile << fixed << time_taken << setprecision(9);
 	i_OutFile << " sec" << endl;
 }

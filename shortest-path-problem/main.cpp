@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Program.h"
 
-/* This is a program to run and measure Bellman-Ford and Dijkstra's algorithems
+/* This is a program to run and measure Bellman-Ford and Dijkstra's algorithms
  to find the weight of the lightest path from source to target vertex in a simple, non-negative weighted, directed grpah.
  The graph will be implemeted in 2 ways: adjacency list and adjacency matrix.
  The Dijkstra's algorithem will use a priority queue that will be implemented in 2 ways: with heap and with simple min array.
