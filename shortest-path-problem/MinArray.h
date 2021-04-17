@@ -1,6 +1,11 @@
 #pragma once
 #include "PriorityQueue.h"
 
+/*
+This class is an implemention of minimum priority queue using array.
+m_Data - array the reprecent a heap's tree.
+m_Flags - array of flags, if m_Flags[i] == true, the i'th vertex is in the queue, else not.
+*/
 class MinArray : public PriorityQueue
 {
 private:

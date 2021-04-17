@@ -9,7 +9,7 @@ void Heap::Build(int* i_InitArray, int i_NumOfVertices) {
 	m_HeapSize = m_MaxSize = i_NumOfVertices;
 
 	m_Indexes[0] = -1;
-	for (int i = 0; i < i_NumOfVertices; i++) {
+	for (int i = 0; i < i_NumOfVertices; i++) { // copy the input arary and init the indexes array
 		m_Data[i].m_Vertex = i + 1;
 		m_Data[i].m_Key = i_InitArray[i + 1];
 		m_Indexes[i + 1] = i;
