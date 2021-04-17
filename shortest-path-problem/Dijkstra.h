@@ -2,6 +2,9 @@
 #include "FordBaseAlgorithm.h"
 #include "PriorityQueue.h"
 
+/* Implementation of Dijkstra's algorithem to find lightest path.
+The algorithem calculates the shortest path using a queue and relax logic.
+Inputs: PriorityQueue - implementation of any priority queue */
 class Dijkstra : public FordBaseAlgorithm
 {
 private:

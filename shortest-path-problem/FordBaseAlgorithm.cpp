@@ -32,3 +32,10 @@ void FordBaseAlgorithm::Init(int i_SrcVertex) {
 	m_DistanceFromSrc[i_SrcVertex] = 0;
 }
 
+int FordBaseAlgorithm::GetWeightOfShortestPathToTarget(int i_Target) const {
+    if (m_DistanceFromSrc == nullptr) {
+        throw std::runtime_error("Error: can't calculate weight before using Process method!");
+    }
+
+    return m_DistanceFromSrc[i_Target];
+}

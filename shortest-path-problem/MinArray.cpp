@@ -21,7 +21,7 @@ void MinArray::Build(int* i_InitArray, int i_NumOfVertices) {
 	m_MaxSize = i_NumOfVertices + 1;
 	m_QueueSize = i_NumOfVertices;
 
-	for (int i = 0; i <= i_NumOfVertices; i++) {
+	for (int i = 0; i <= i_NumOfVertices; i++) { // copy the input array and initialize the flags array
 		m_Data[i].m_Vertex = i;
 		m_Data[i].m_Key = i_InitArray[i];
 		m_Flags[i] = (i != 0);
