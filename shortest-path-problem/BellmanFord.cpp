@@ -17,7 +17,7 @@ void BellmanFord::Process(const Graph& i_Grpah, int i_SrcVertex) {
     
     for (const auto& edge : edgeList) {
         if (m_DistanceFromSrc[edge.m_Dest] > m_DistanceFromSrc[edge.m_Src] + edge.m_Weight) {
-			throw std::exception("Negative cycle!");
+			throw std::runtime_error("Negative cycle!");
         }
     }
 }
