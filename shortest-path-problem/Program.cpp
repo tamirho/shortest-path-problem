@@ -1,5 +1,61 @@
 #include "Program.h"
+
 using namespace std;
+
+
+void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
+	
+	int src, target;
+	ifstream inputFile;
+	Graph *adjMatrix = nullptr, *adjList = nullptr;
+
+	try {
+		inputFile.open(i_Inputfile);
+		adjMatrix = GraphBuilder::BuildAdjMatrixFromFile(inputFile, src, target);
+		inputFile.seekg(0, inputFile.beg);
+		adjList = GraphBuilder::BuildAdjListFromFile(inputFile, src, target);
+		inputFile.close();
+	}
+	catch (std::exception& error) {
+		if (adjMatrix) delete adjMatrix;
+		if (adjList) delete adjList;
+		if (inputFile) inputFile.close();
+		throw error;
+	}
+
+
+	ofstream outputFile;
+	try {
+		outputFile.open(i_Outputfile, ios::app);
+
+		Heap heap;
+		MinArray minArray;
+
+		Dijkstra dijkstraHeapAlgorithm(heap);
+		Dijkstra dijkstraArrayAlgorithm(minArray);
+		BellmanFord bellmanFordAlgorithm;
+
+		RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjList, src, target, outputFile);
+		RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjList, src, target, outputFile);
+		RunAndMeassureAlgorithm(bellmanFordAlgorithm, *adjList, src, target, outputFile);
+
+		RunAndMeassureAlgorithm(dijkstraHeapAlgorithm, *adjMatrix, src, target, outputFile);
+		RunAndMeassureAlgorithm(dijkstraArrayAlgorithm, *adjMatrix, src, target, outputFile);
+		RunAndMeassureAlgorithm(bellmanFordAlgorithm, *adjMatrix, src, target, outputFile);
+
+		outputFile.close();
+		delete adjMatrix;
+		delete adjList;
+	}
+	catch (std::exception& error) {
+		if (adjMatrix) delete adjMatrix;
+		if (adjList) delete adjList;
+		if (outputFile) outputFile.close();
+		throw error;
+	}
+
+}
+
 
 void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Traget, ostream& i_OutFile)
 {
