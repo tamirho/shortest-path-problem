@@ -145,7 +145,6 @@
     <ClInclude Include="GraphBuilder.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="List.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="MinArray.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Program.h" />

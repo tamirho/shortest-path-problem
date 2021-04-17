@@ -1,8 +1,14 @@
 #pragma once
 #include "Graph.h"
 
+
+/*
+	A class that represents a finite graph consisting of neighboring lists.
+	Each list describes the set of neighbors of a particular vertex.
+*/
 class AdjacencyList : public Graph
 {
+
 private:
 	mySTL::List<Edge>*  m_AdjList;
 	int m_NumOfVertices;
