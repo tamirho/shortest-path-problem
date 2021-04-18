@@ -10,8 +10,6 @@ class AdjacencyMatrix : public Graph
 {
 private:
 	int** m_Matrix;
-	int m_NumOfVertices;
-
 	void deleteMatrix();
 
 public:

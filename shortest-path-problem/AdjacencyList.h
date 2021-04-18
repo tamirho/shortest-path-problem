@@ -10,8 +10,6 @@ class AdjacencyList : public Graph
 
 private:
 	mySTL::List<Edge>*  m_AdjList;
-	int m_NumOfVertices;
-
     void deleteAdjList();
 
 public:
