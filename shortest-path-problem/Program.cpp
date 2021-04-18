@@ -16,11 +16,11 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
 		adjList = GraphBuilder::BuildAdjListFromFile(inputFile, src, target);
 		inputFile.close();
 	}
-	catch (std::exception& error) {
+	catch (const std::exception& error) {
 		if (adjMatrix) delete adjMatrix;
 		if (adjList) delete adjList;
 		if (inputFile) inputFile.close();
-		throw error;
+		throw;
 	}
 
 
@@ -47,11 +47,11 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
 		delete adjMatrix;
 		delete adjList;
 	}
-	catch (std::exception& error) {
+	catch (const std::exception& error) {
 		if (adjMatrix) delete adjMatrix;
 		if (adjList) delete adjList;
 		if (outputFile) outputFile.close();
-		throw error;
+		throw;
 	}
 
 }

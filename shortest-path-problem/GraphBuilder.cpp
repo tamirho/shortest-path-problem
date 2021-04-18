@@ -10,13 +10,11 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
     }
     
     std::getline(i_InputFile, line);
-    int numOfVertices = getIntFromLine(line);
-    std::getline(i_InputFile, line);
     o_Source = getIntFromLine(line);
     std::getline(i_InputFile, line);
     o_Target = getIntFromLine(line);
     
-    graph.MakeEmptyGraph(numOfVertices);
+    graph.MakeEmptyGraph(graph.GetNumOfVertices());
     
     while(!i_InputFile.eof()) {
         
@@ -36,14 +34,22 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
 }
 
 Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
-    Graph* newGraph = new AdjacencyList();
+    std::string line;
+    std::getline(i_InputFile, line);
+    int numOfVertices = getIntFromLine(line);
+    
+    Graph* newGraph = new AdjacencyList(numOfVertices);
     buildGraphFromFile(*newGraph, i_InputFile, o_Source, o_Target);
     
     return newGraph;
 }
 
 Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
-    Graph* newGraph = new AdjacencyMatrix();
+    std::string line;
+    std::getline(i_InputFile, line);
+    int numOfVertices = getIntFromLine(line);
+    
+    Graph* newGraph = new AdjacencyMatrix(numOfVertices);
     buildGraphFromFile(*newGraph, i_InputFile, o_Source, o_Target);
         
     return newGraph;

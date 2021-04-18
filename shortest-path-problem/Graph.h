@@ -9,18 +9,20 @@ struct Edge {
 	int m_Src, m_Dest, m_Weight;
 };
 
-
 /*
 	An abstract class representing a directed graph
-*/
+ */
 class Graph {
 protected:
-
+    int m_NumOfVertices;
+    
+    // check if the vertex number is valid with respect to the num of vertices in the graph
+    bool isValidVertex(int i_VertexNum) const { return i_VertexNum > 0 && i_VertexNum <= m_NumOfVertices; }
 	// A special value to represent an undefined edge.
 	static const int EMPTY = -1;
 
 public:
-	Graph() = default;
+    Graph(int i_NumOfVertices) { m_NumOfVertices = i_NumOfVertices; }
 	virtual ~Graph() = default;
     
 	virtual void MakeEmptyGraph(int i_NumOfVertices) = 0;
@@ -50,5 +52,6 @@ public:
 	virtual int getNumOfVertices() const = 0;
 	virtual void PrintGraph() const = 0;
     virtual std::string GetGraphType() const = 0;
+    int GetNumOfVertices() const { return m_NumOfVertices; }
 };
 

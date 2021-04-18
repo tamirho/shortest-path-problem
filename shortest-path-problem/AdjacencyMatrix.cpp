@@ -1,7 +1,7 @@
 #include "AdjacencyMatrix.h"
 #include <iostream>
 
-AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices) : m_Matrix(nullptr), m_NumOfVertices(0){
+AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices) : Graph(i_NumOfVertices), m_Matrix(nullptr){
 	MakeEmptyGraph(i_NumOfVertices);
 }
 
@@ -9,7 +9,7 @@ AdjacencyMatrix::~AdjacencyMatrix() {
 	deleteMatrix();
 }
 
-AdjacencyMatrix::AdjacencyMatrix(const AdjacencyMatrix& other) : m_Matrix(nullptr), m_NumOfVertices(0) {
+AdjacencyMatrix::AdjacencyMatrix(const AdjacencyMatrix& other) : Graph(other.m_NumOfVertices), m_Matrix(nullptr){
     *this = other;
 }
 
@@ -41,11 +41,20 @@ void AdjacencyMatrix::MakeEmptyGraph(int i_NumOfVertices) {
 	}
 }
 bool AdjacencyMatrix::IsAdjacent(int i_Src, int i_Dest) const {
+    if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
+        throw std::invalid_argument("Invalid vertex number!");
+    }
+    
 	return m_Matrix[i_Src - 1][i_Dest - 1] != Graph::EMPTY;
 }
 
 mySTL::List<Edge> AdjacencyMatrix::GetAdjList(int i_Src) const {
 	mySTL::List<Edge> adjList;
+    
+    if (!isValidVertex(i_Src)) {
+        throw std::invalid_argument("Invalid vertex number!");
+    }
+    
 	for (int i = 0; i < m_NumOfVertices; i++) {
 		if (m_Matrix[i_Src - 1][i] != Graph::EMPTY) {
 			adjList.push_back({ i_Src, i + 1, m_Matrix[i_Src - 1][i] });
@@ -70,10 +79,14 @@ mySTL::List<Edge> AdjacencyMatrix::GetEdgeList() const {
 
 
 void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, int i_Weight) {
-	if (i_Src == i_Dest) {
+    
+    if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
+        throw std::invalid_argument("Invalid vertex number!");
+    }
+	else if (i_Src == i_Dest) {
 		throw std::invalid_argument("A Simple graph cannot contain loop");
 	}
-	if (IsAdjacent(i_Src, i_Dest)) {
+	else if (IsAdjacent(i_Src, i_Dest)) {
 		throw std::invalid_argument("A Simple graph cannot contain parallel edges");
 	}
 

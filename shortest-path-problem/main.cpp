@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 		}
 		Program::Run(argv[1], argv[2]);
 	}
-	catch (std::exception& error) {
+	catch (const std::exception& error) {
 		std::cout << error.what() << std::endl;
 		exit(1);
 	}
