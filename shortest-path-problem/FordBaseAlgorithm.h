@@ -4,7 +4,7 @@
 
 /*
  This class is a base for ford algorithems which use relaxion process.
-After using Process method, the class contains:
+ After using Process method, the class contains:
  m_DistanceFromSrc - the distance of the weighted path to each vertex in the graph, starting from source
  m_Parent - parent array of to lightest path tree,
  where m_Parent[i] is the parent of the i'th vertex in the lightest path to vertex i
@@ -14,12 +14,12 @@ class FordBaseAlgorithm {
 protected:
     static const int Nan = INT_MIN;
     int* m_DistanceFromSrc;
-	int* m_Parent;
-	int	 m_NumOfVertices;
+    int* m_Parent;
+    int	 m_NumOfVertices;
     
     virtual void Init(int i_SrcVertex);
     virtual void Relax(int i_Src, int i_Dest, int i_Weight) = 0;
-	virtual void ClearData();
+    virtual void ClearData();
 public:
     FordBaseAlgorithm();
     virtual ~FordBaseAlgorithm();

@@ -4,7 +4,7 @@
 void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     
     std::string line;
-
+    
     if (!i_InputFile) {
         throw std::invalid_argument("Error with inputFile!");
     }
@@ -30,7 +30,7 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
         
         graph.AddEdge(currEdge);
     }
-
+    
 }
 
 Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
@@ -51,7 +51,7 @@ Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_S
     
     Graph* newGraph = new AdjacencyMatrix(numOfVertices);
     buildGraphFromFile(*newGraph, i_InputFile, o_Source, o_Target);
-        
+    
     return newGraph;
 }
 
@@ -73,7 +73,7 @@ Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
     std::stringstream lineStream(i_Str);
     Edge inputEdge;
     int dummy;
-
+    
     if (lineStream >> inputEdge.m_Src >> inputEdge.m_Dest >> inputEdge.m_Weight) {
         if (!(lineStream >> dummy)) {
             return inputEdge;

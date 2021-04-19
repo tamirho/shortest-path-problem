@@ -12,7 +12,7 @@
  and write the measures to the output file.
  
  Main paramters: argv[1] - The input file path
-                 argv[2] - The output file path
+ argv[2] - The output file path
  
  Input file parameters:
  3 Integers that represent the number of vertices, the source vertex and the target vertex.
@@ -32,22 +32,22 @@
  ***********************************************************************************************************************
  **** Notice: The text file shouldn't contain extra lines! if it does, an "Invalid file" exception will be thrown! ****
  ***********************************************************************************************************************
-
+ 
  To run all 3 algorithms, use Progrma::Run
  */
 
 int main(int argc, char* argv[]) {
-
-	try {
-		if (argc < 3) {
-			throw std::invalid_argument("Error with main program parameters");
-		}
-		Program::Run(argv[1], argv[2]);
-	}
-	catch (const std::exception& error) {
-		std::cout << error.what() << std::endl;
-		exit(1);
-	}
-	
-	return 0;
+    
+    try {
+        if (argc < 3) {
+            throw std::invalid_argument("Error with main program parameters");
+        }
+        Program::Run(argv[1], argv[2]);
+    }
+    catch (const std::exception& error) {
+        std::cout << error.what() << std::endl;
+        exit(1);
+    }
+    
+    return 0;
 }

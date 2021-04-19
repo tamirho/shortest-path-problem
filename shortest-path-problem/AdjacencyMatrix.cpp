@@ -2,11 +2,11 @@
 #include <iostream>
 
 AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices) : Graph(i_NumOfVertices), m_Matrix(nullptr){
-	MakeEmptyGraph(i_NumOfVertices);
+    MakeEmptyGraph(i_NumOfVertices);
 }
 
 AdjacencyMatrix::~AdjacencyMatrix() {
-	deleteMatrix();
+    deleteMatrix();
 }
 
 AdjacencyMatrix::AdjacencyMatrix(const AdjacencyMatrix& other) : Graph(other.m_NumOfVertices), m_Matrix(nullptr){
@@ -14,53 +14,53 @@ AdjacencyMatrix::AdjacencyMatrix(const AdjacencyMatrix& other) : Graph(other.m_N
 }
 
 void AdjacencyMatrix::deleteMatrix() {
-	if (m_Matrix) {
-		for (int i = 0; i < m_NumOfVertices; i++) {
-			delete[] m_Matrix[i];
-		}
-		delete[] m_Matrix;
-		m_NumOfVertices = 0;
-	}
+    if (m_Matrix) {
+        for (int i = 0; i < m_NumOfVertices; i++) {
+            delete[] m_Matrix[i];
+        }
+        delete[] m_Matrix;
+        m_NumOfVertices = 0;
+    }
     
     m_Matrix = nullptr;
 }
 
 void AdjacencyMatrix::MakeEmptyGraph(int i_NumOfVertices) {
-	deleteMatrix();
-
+    deleteMatrix();
+    
     m_NumOfVertices = i_NumOfVertices;
-	m_Matrix = new int*[i_NumOfVertices];
-
-	for (int i = 0; i < m_NumOfVertices; i++)
-	{
-		m_Matrix[i] = new int[m_NumOfVertices];
-		for (int j = 0; j < m_NumOfVertices; j++)
-		{
-			m_Matrix[i][j] = Graph::EMPTY;
-		}
-	}
+    m_Matrix = new int*[i_NumOfVertices];
+    
+    for (int i = 0; i < m_NumOfVertices; i++)
+    {
+        m_Matrix[i] = new int[m_NumOfVertices];
+        for (int j = 0; j < m_NumOfVertices; j++)
+        {
+            m_Matrix[i][j] = Graph::EMPTY;
+        }
+    }
 }
 bool AdjacencyMatrix::IsAdjacent(int i_Src, int i_Dest) const {
     if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
     
-	return m_Matrix[i_Src - 1][i_Dest - 1] != Graph::EMPTY;
+    return m_Matrix[i_Src - 1][i_Dest - 1] != Graph::EMPTY;
 }
 
 mySTL::List<Edge> AdjacencyMatrix::GetAdjList(int i_Src) const {
-	mySTL::List<Edge> adjList;
+    mySTL::List<Edge> adjList;
     
     if (!isValidVertex(i_Src)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
     
-	for (int i = 0; i < m_NumOfVertices; i++) {
-		if (m_Matrix[i_Src - 1][i] != Graph::EMPTY) {
-			adjList.push_back({ i_Src, i + 1, m_Matrix[i_Src - 1][i] });
-		}
-	}
-	return adjList;
+    for (int i = 0; i < m_NumOfVertices; i++) {
+        if (m_Matrix[i_Src - 1][i] != Graph::EMPTY) {
+            adjList.push_back({ i_Src, i + 1, m_Matrix[i_Src - 1][i] });
+        }
+    }
+    return adjList;
 }
 
 mySTL::List<Edge> AdjacencyMatrix::GetEdgeList() const {
@@ -83,33 +83,33 @@ void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, int i_Weight) {
     if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
-	else if (i_Src == i_Dest) {
-		throw std::invalid_argument("A Simple graph cannot contain loop");
-	}
-	else if (IsAdjacent(i_Src, i_Dest)) {
-		throw std::invalid_argument("A Simple graph cannot contain parallel edges");
-	}
-
-	m_Matrix[i_Src - 1][i_Dest - 1] = i_Weight;
+    else if (i_Src == i_Dest) {
+        throw std::invalid_argument("A Simple graph cannot contain loop");
+    }
+    else if (IsAdjacent(i_Src, i_Dest)) {
+        throw std::invalid_argument("A Simple graph cannot contain parallel edges");
+    }
+    
+    m_Matrix[i_Src - 1][i_Dest - 1] = i_Weight;
 }
 void AdjacencyMatrix::RemoveEdge(int i_Src, int i_Dest) {
-	if (!IsAdjacent(i_Src, i_Dest)) {
-		throw std::invalid_argument("Invalid edge");
-	}
-	m_Matrix[i_Src - 1][i_Dest - 1] = Graph::EMPTY;
+    if (!IsAdjacent(i_Src, i_Dest)) {
+        throw std::invalid_argument("Invalid edge");
+    }
+    m_Matrix[i_Src - 1][i_Dest - 1] = Graph::EMPTY;
 }
 
 void AdjacencyMatrix::PrintGraph() const {
-	for (int i = 0; i < m_NumOfVertices; i++)
-	{
-		std::cout << i + 1 << " | ";
-		for (int j = 0; j < m_NumOfVertices; j++) {
-			if (m_Matrix[i][j] != Graph::EMPTY) {
-				std::cout << "(" << j + 1 << ", " << m_Matrix[i][j] << " ) , ";
-			}
-		}
-		std::cout << std::endl;
-	}
+    for (int i = 0; i < m_NumOfVertices; i++)
+    {
+        std::cout << i + 1 << " | ";
+        for (int j = 0; j < m_NumOfVertices; j++) {
+            if (m_Matrix[i][j] != Graph::EMPTY) {
+                std::cout << "(" << j + 1 << ", " << m_Matrix[i][j] << " ) , ";
+            }
+        }
+        std::cout << std::endl;
+    }
 }
 
 const AdjacencyMatrix& AdjacencyMatrix::operator=(const AdjacencyMatrix& other) {
