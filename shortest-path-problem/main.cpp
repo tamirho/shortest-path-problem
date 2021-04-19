@@ -2,16 +2,17 @@
 #include <stdlib.h>
 #include "Program.h"
 
-/* This is a program to run and measure Bellman-Ford and Dijkstra's algorithms
- to find the weight of the lightest path from source to target vertex in a simple, non-negative weighted, directed grpah.
- The graph will be implemeted in 2 ways: adjacency list and adjacency matrix.
- The Dijkstra's algorithem will use a priority queue that will be implemented in 2 ways: with heap and with simple min array.
+/*
+ This is a program to run and measure Bellman-Ford and Dijkstra's algorithms to find the weight of the lightest path
+ from source to target vertex in a simple, non-negative weighted, directed grpah.
+ The graph will be implemented in 2 ways: adjacency list and adjacency matrix.
+ The Dijkstra's algorithem will use a priority queue that will be implemented in 2 ways: heap and simple min array.
  
- The program gets the input from a text file, prints the result of each algorithem and each graph implemention
+ The program gets the input from a text file, prints the result of each algorithm and each graph implemention
  and write the measures to the output file.
  
  Main paramters: argv[1] - The input file path
-                 argv[2] - The ouput file path
+                 argv[2] - The output file path
  
  Input file parameters:
  3 Integers that represent the number of vertices, the source vertex and the target vertex.
@@ -27,9 +28,14 @@
  1 3 2
  2 4 2
  3 1 3
+ 
+ ***********************************************************************************************************************
+ **** Notice: The text file shouldn't contain extra lines! if it does, an "Invalid file" exception will be thrown! ****
+ ***********************************************************************************************************************
 
  To run all 3 algorithms, use Progrma::Run
  */
+
 int main(int argc, char* argv[]) {
 
 	try {
