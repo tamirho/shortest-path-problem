@@ -15,7 +15,7 @@ MinArray::~MinArray() {
     m_Flags = nullptr;
 }
 
-void MinArray::Build(int* i_InitArray, int i_NumOfVertices) {
+void MinArray::Build(float* i_InitArray, int i_NumOfVertices) {
     m_Data = new Pair[i_NumOfVertices + 1];
     m_Flags = new bool[i_NumOfVertices + 1];
     m_MaxSize = i_NumOfVertices + 1;
@@ -28,10 +28,11 @@ void MinArray::Build(int* i_InitArray, int i_NumOfVertices) {
     }
 }
 
-void MinArray::DecreaseKey(int i_Vertex, int i_NewKey) {
+void MinArray::DecreaseKey(int i_Vertex, float i_NewKey) {
     if (i_Vertex > m_MaxSize || i_Vertex < 0 || m_Flags[i_Vertex] == false) {
         throw std::runtime_error("Invalid operation");
     }
+
     m_Data[i_Vertex].m_Key = i_NewKey;
 }
 

@@ -12,7 +12,8 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
     try {
         inputFile.open(i_Inputfile);
         adjMatrix = GraphBuilder::BuildAdjMatrixFromFile(inputFile, src, target);
-        inputFile.seekg(0, inputFile.beg);
+		inputFile.clear();
+        inputFile.seekg(0);
         adjList = GraphBuilder::BuildAdjListFromFile(inputFile, src, target);
         inputFile.close();
     }
@@ -75,7 +76,7 @@ void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, co
     // Screen output
     cout << i_Graph.GetGraphType() << " ";
     cout << i_AlgorithmFunction.GetAlgorithmName() << " ";
-    cout << i_AlgorithmFunction.GetWeightOfShortestPathToTarget(i_Traget) << endl;
+	cout << i_AlgorithmFunction.GetWeightOfShortestPathToTargetAsString(i_Traget) << endl;
     
     if (!i_OutFile) {
         throw std::invalid_argument("Error with output file!");

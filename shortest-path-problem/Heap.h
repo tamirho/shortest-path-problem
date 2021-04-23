@@ -27,10 +27,10 @@ public:
     Heap();
     ~Heap();
     
-    void Build(int* i_InitArray, int i_NumOfVertices) override;
+    void Build(float* i_InitArray, int i_NumOfVertices) override;
     bool IsEmpty() const override { return m_HeapSize == 0; }
     void makeEmpty() { m_HeapSize = 0; }
-    void DecreaseKey(int i_Vertex, int i_NewKey) override;
+    void DecreaseKey(int i_Vertex, float i_NewKey) override;
     int DeleteMin() override;
     std::string GetPriorityQueueName() const override;
     

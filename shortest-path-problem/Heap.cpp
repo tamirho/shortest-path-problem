@@ -3,7 +3,7 @@
 Heap::Heap() : m_MaxSize(0), m_HeapSize(0), m_Data(nullptr), m_Indexes(nullptr){
 }
 
-void Heap::Build(int* i_InitArray, int i_NumOfVertices) {
+void Heap::Build(float* i_InitArray, int i_NumOfVertices) {
     m_Data = new Pair[i_NumOfVertices];
     m_Indexes = new int[i_NumOfVertices + 1];
     m_HeapSize = m_MaxSize = i_NumOfVertices;
@@ -87,7 +87,7 @@ int Heap::DeleteMin() {
 }
 
 
-void Heap::DecreaseKey(int i_Vertex, int i_NewKey) {
+void Heap::DecreaseKey(int i_Vertex, float i_NewKey) {
     if (i_Vertex > m_MaxSize || i_Vertex < 0) {
         throw std::runtime_error("Invalid operation");
     }

@@ -1,5 +1,5 @@
 #include "GraphBuilder.h"
-
+#include <cctype>
 
 void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     
@@ -23,14 +23,37 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
         }
         
         std::getline(i_InputFile, line);
-        Edge currEdge = getEdgeFromLine(line);
-        if (currEdge.m_Weight < 0) {
-            throw std::invalid_argument("Invalid weight");
-        }
+		if (isWhiteSpacesOnly(line)) {
+			break;
+		}
+
+		Edge currEdge = getEdgeFromLine(line);
+		if (currEdge.m_Weight < 0) {
+			throw std::invalid_argument("Invalid weight");
+		}
         
-        graph.AddEdge(currEdge);
+		graph.AddEdge(currEdge);
     }
-    
+
+	while (!i_InputFile.eof()){
+		if (!i_InputFile.good()) {
+            throw std::invalid_argument("Error with inputFile!");
+        }
+		std::getline(i_InputFile, line);
+		if (!isWhiteSpacesOnly(line)) {
+			throw std::invalid_argument("Error with inputFile!");
+		}
+	}
+}
+
+bool GraphBuilder::isWhiteSpacesOnly(const std::string& i_Line) {
+	for (const char& ch : i_Line) {
+		if (!std::isspace(ch)) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
 Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
@@ -57,10 +80,10 @@ Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_S
 
 int GraphBuilder::getIntFromLine(const std::string& i_Str) {
     std::stringstream lineStream(i_Str);
-    int res, dummy;
+	int res;
+	char dummy;
     
     if (lineStream >> res) {
-        
         if (!(lineStream >> dummy)) {
             return res;
         }
@@ -72,7 +95,7 @@ int GraphBuilder::getIntFromLine(const std::string& i_Str) {
 Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
     std::stringstream lineStream(i_Str);
     Edge inputEdge;
-    int dummy;
+    char dummy;
     
     if (lineStream >> inputEdge.m_Src >> inputEdge.m_Dest >> inputEdge.m_Weight) {
         if (!(lineStream >> dummy)) {

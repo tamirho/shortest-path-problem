@@ -9,8 +9,11 @@
 class AdjacencyMatrix : public Graph
 {
 private:
-    int** m_Matrix;
+    float** m_Matrix;
     void deleteMatrix();
+
+	// A special value to represent an undefined edge.
+	static const float EMPTY;
     
 public:
     AdjacencyMatrix(int i_NumOfVertices = 0);
@@ -22,9 +25,8 @@ public:
     virtual bool IsAdjacent(int i_Src, int i_Dest) const override;
     virtual mySTL::List<Edge> GetAdjList(int i_Src) const override;
     virtual mySTL::List<Edge> GetEdgeList() const override;
-    virtual void AddEdge(int i_Src, int i_Dest, int i_Weight) override;
+    virtual void AddEdge(int i_Src, int i_Dest, float i_Weight) override;
     virtual void RemoveEdge(int i_Src, int i_Dest) override;
-    virtual int getNumOfVertices() const override { return m_NumOfVertices; };
     virtual void PrintGraph() const override;
     virtual std::string GetGraphType() const override;
 };

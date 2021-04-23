@@ -60,7 +60,7 @@ mySTL::List<Edge> AdjacencyList::GetEdgeList() const {
 }
 
 
-void AdjacencyList::AddEdge(int i_Src, int i_Dest, int i_Weight) {
+void AdjacencyList::AddEdge(int i_Src, int i_Dest, float i_Weight) {
     
     if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
@@ -99,7 +99,7 @@ void AdjacencyList::PrintGraph() const{
     {
         std::cout << i << " | ";
         for (const auto& edge : m_AdjList[i]) {
-            std::cout << "(" << edge.m_Dest << ", " <<edge.m_Weight << " ) , ";
+            std::cout << "(" << edge.m_Dest << ", " << edge.m_Weight << " ) , ";
         }
         std::cout << std::endl;
     }

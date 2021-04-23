@@ -4,9 +4,10 @@ BellmanFord::~BellmanFord() {
 }
 
 void BellmanFord::Process(const Graph& i_Grpah, int i_SrcVertex) {
-    m_NumOfVertices = i_Grpah.getNumOfVertices();
-    
-    Init(i_SrcVertex);
+    m_NumOfVertices = i_Grpah.GetNumOfVertices();
+	m_SrcVertex = i_SrcVertex;
+
+    Init(m_SrcVertex);
     mySTL::List<Edge> edgeList = i_Grpah.GetEdgeList();
     
     for (int i = 1; i < m_NumOfVertices; i++) {
@@ -24,7 +25,7 @@ void BellmanFord::Process(const Graph& i_Grpah, int i_SrcVertex) {
     }
 }
 
-void BellmanFord::Relax(int i_Src, int i_Dest, int i_Weight) {
+void BellmanFord::Relax(int i_Src, int i_Dest, float i_Weight) {
     
     if (m_DistanceFromSrc[i_Src] != Nan)
     {

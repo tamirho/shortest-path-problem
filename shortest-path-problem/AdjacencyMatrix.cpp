@@ -1,6 +1,8 @@
 #include "AdjacencyMatrix.h"
 #include <iostream>
 
+const float AdjacencyMatrix::EMPTY = -1;
+
 AdjacencyMatrix::AdjacencyMatrix(int i_NumOfVertices) : Graph(i_NumOfVertices), m_Matrix(nullptr){
     MakeEmptyGraph(i_NumOfVertices);
 }
@@ -29,14 +31,14 @@ void AdjacencyMatrix::MakeEmptyGraph(int i_NumOfVertices) {
     deleteMatrix();
     
     m_NumOfVertices = i_NumOfVertices;
-    m_Matrix = new int*[i_NumOfVertices];
+    m_Matrix = new float*[i_NumOfVertices];
     
     for (int i = 0; i < m_NumOfVertices; i++)
     {
-        m_Matrix[i] = new int[m_NumOfVertices];
+        m_Matrix[i] = new float[m_NumOfVertices];
         for (int j = 0; j < m_NumOfVertices; j++)
         {
-            m_Matrix[i][j] = Graph::EMPTY;
+            m_Matrix[i][j] = AdjacencyMatrix::EMPTY;
         }
     }
 }
@@ -45,7 +47,7 @@ bool AdjacencyMatrix::IsAdjacent(int i_Src, int i_Dest) const {
         throw std::invalid_argument("Invalid vertex number!");
     }
     
-    return m_Matrix[i_Src - 1][i_Dest - 1] != Graph::EMPTY;
+    return m_Matrix[i_Src - 1][i_Dest - 1] != AdjacencyMatrix::EMPTY;
 }
 
 mySTL::List<Edge> AdjacencyMatrix::GetAdjList(int i_Src) const {
@@ -56,7 +58,7 @@ mySTL::List<Edge> AdjacencyMatrix::GetAdjList(int i_Src) const {
     }
     
     for (int i = 0; i < m_NumOfVertices; i++) {
-        if (m_Matrix[i_Src - 1][i] != Graph::EMPTY) {
+        if (m_Matrix[i_Src - 1][i] != AdjacencyMatrix::EMPTY) {
             adjList.push_back({ i_Src, i + 1, m_Matrix[i_Src - 1][i] });
         }
     }
@@ -68,7 +70,7 @@ mySTL::List<Edge> AdjacencyMatrix::GetEdgeList() const {
     
     for (int i = 0; i < m_NumOfVertices; i++) {
         for (int j = 0; j< m_NumOfVertices; j++) {
-            if (m_Matrix[i][j] != Graph::EMPTY) {
+            if (m_Matrix[i][j] != AdjacencyMatrix::EMPTY) {
                 EdgeList.push_back({i + 1, j + 1, m_Matrix[i][j]});
             }
         }
@@ -78,7 +80,7 @@ mySTL::List<Edge> AdjacencyMatrix::GetEdgeList() const {
 }
 
 
-void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, int i_Weight) {
+void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, float i_Weight) {
     
     if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
@@ -92,11 +94,12 @@ void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, int i_Weight) {
     
     m_Matrix[i_Src - 1][i_Dest - 1] = i_Weight;
 }
+
 void AdjacencyMatrix::RemoveEdge(int i_Src, int i_Dest) {
     if (!IsAdjacent(i_Src, i_Dest)) {
         throw std::invalid_argument("Invalid edge");
     }
-    m_Matrix[i_Src - 1][i_Dest - 1] = Graph::EMPTY;
+    m_Matrix[i_Src - 1][i_Dest - 1] = AdjacencyMatrix::EMPTY;
 }
 
 void AdjacencyMatrix::PrintGraph() const {
@@ -104,7 +107,7 @@ void AdjacencyMatrix::PrintGraph() const {
     {
         std::cout << i + 1 << " | ";
         for (int j = 0; j < m_NumOfVertices; j++) {
-            if (m_Matrix[i][j] != Graph::EMPTY) {
+            if (m_Matrix[i][j] != AdjacencyMatrix::EMPTY) {
                 std::cout << "(" << j + 1 << ", " << m_Matrix[i][j] << " ) , ";
             }
         }
