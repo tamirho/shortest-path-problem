@@ -6,7 +6,7 @@ void GraphBuilder::buildGraphFromFile(Graph& io_Graph, std::ifstream& i_InputFil
     std::string line;
     
     if (!i_InputFile) {
-        throw std::invalid_argument("Error with inputFile!");
+        throw std::invalid_argument("Error with input file!");
     }
     
     std::getline(i_InputFile, line);
@@ -15,13 +15,13 @@ void GraphBuilder::buildGraphFromFile(Graph& io_Graph, std::ifstream& i_InputFil
     o_Target = getIntFromLine(line);
 
 	if (!io_Graph.IsValidVertex(o_Source) || !io_Graph.IsValidVertex(o_Target)) {
-		throw std::invalid_argument("Invalid vertex number!");
+		throw std::invalid_argument("Invalid Source/Target vertex number in input file!");
 	}
 
     while(!i_InputFile.eof()) {
         
         if (!i_InputFile.good()) {
-            throw std::invalid_argument("Error with inputFile!");
+            throw std::invalid_argument("Error with input file!");
         }
         
         std::getline(i_InputFile, line);
@@ -37,13 +37,15 @@ void GraphBuilder::buildGraphFromFile(Graph& io_Graph, std::ifstream& i_InputFil
 		io_Graph.AddEdge(currEdge);
     }
 
-	while (!i_InputFile.eof()){
+	// Ignore white spaces in the end of the file
+	while (!i_InputFile.eof())
+	{
 		if (!i_InputFile.good()) {
-            throw std::invalid_argument("Error with inputFile!");
+            throw std::invalid_argument("Error with input file!");
         }
 		std::getline(i_InputFile, line);
 		if (!isWhiteSpacesOnly(line)) {
-			throw std::invalid_argument("Error with inputFile!");
+			throw std::invalid_argument("Error with input file structure!");
 		}
 	}
 }
@@ -91,12 +93,15 @@ int GraphBuilder::getIntFromLine(const std::string& i_Str) {
         }
     }
     
-    throw std::invalid_argument("Error with inputFile!");
+    throw std::invalid_argument("Error with input file structre!");
 }
 
 Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
     std::stringstream lineStream(i_Str);
-    Edge inputEdge;
+	std::string myFloat;
+	double check;
+	Edge inputEdge = { 0,0,0 };
+	float weight = 0;
     char dummy;
     
     if (lineStream >> inputEdge.m_Src >> inputEdge.m_Dest >> inputEdge.m_Weight) {
@@ -104,5 +109,5 @@ Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
             return inputEdge;
         }
     }
-    throw std::invalid_argument("Error with inputFile!");
+    throw std::invalid_argument("Error with input file structre!");
 }
