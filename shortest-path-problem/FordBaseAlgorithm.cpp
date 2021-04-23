@@ -39,6 +39,9 @@ float FordBaseAlgorithm::GetWeightOfShortestPathToTarget(int i_Target) const {
     if (m_DistanceFromSrc == nullptr) {
         throw std::runtime_error("Error: can't calculate weight before using Process method!");
     }
+	else if (i_Target <= 0 || i_Target > m_NumOfVertices) {
+		throw std::invalid_argument("Error: Invalid target vertex");
+	}
 
     return m_DistanceFromSrc[i_Target];
 }

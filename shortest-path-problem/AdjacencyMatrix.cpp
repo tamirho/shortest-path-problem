@@ -43,7 +43,7 @@ void AdjacencyMatrix::MakeEmptyGraph(int i_NumOfVertices) {
     }
 }
 bool AdjacencyMatrix::IsAdjacent(int i_Src, int i_Dest) const {
-    if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
+    if (!IsValidVertex(i_Src) || !IsValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
     
@@ -53,7 +53,7 @@ bool AdjacencyMatrix::IsAdjacent(int i_Src, int i_Dest) const {
 mySTL::List<Edge> AdjacencyMatrix::GetAdjList(int i_Src) const {
     mySTL::List<Edge> adjList;
     
-    if (!isValidVertex(i_Src)) {
+    if (!IsValidVertex(i_Src)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
     
@@ -82,7 +82,7 @@ mySTL::List<Edge> AdjacencyMatrix::GetEdgeList() const {
 
 void AdjacencyMatrix::AddEdge(int i_Src, int i_Dest, float i_Weight) {
     
-    if (!isValidVertex(i_Src) || !isValidVertex(i_Dest)) {
+    if (!IsValidVertex(i_Src) || !IsValidVertex(i_Dest)) {
         throw std::invalid_argument("Invalid vertex number!");
     }
     else if (i_Src == i_Dest) {

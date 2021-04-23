@@ -1,7 +1,7 @@
 #include "GraphBuilder.h"
 #include <cctype>
 
-void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
+void GraphBuilder::buildGraphFromFile(Graph& io_Graph, std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     
     std::string line;
     
@@ -13,9 +13,11 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
     o_Source = getIntFromLine(line);
     std::getline(i_InputFile, line);
     o_Target = getIntFromLine(line);
-    
-    graph.MakeEmptyGraph(graph.GetNumOfVertices());
-    
+
+	if (!io_Graph.IsValidVertex(o_Source) || !io_Graph.IsValidVertex(o_Target)) {
+		throw std::invalid_argument("Invalid vertex number!");
+	}
+
     while(!i_InputFile.eof()) {
         
         if (!i_InputFile.good()) {
@@ -32,7 +34,7 @@ void GraphBuilder::buildGraphFromFile(Graph& graph, std::ifstream& i_InputFile, 
 			throw std::invalid_argument("Invalid weight");
 		}
         
-		graph.AddEdge(currEdge);
+		io_Graph.AddEdge(currEdge);
     }
 
 	while (!i_InputFile.eof()){
