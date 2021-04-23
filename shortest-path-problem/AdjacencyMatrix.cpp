@@ -1,5 +1,5 @@
-#include "AdjacencyMatrix.h"
 #include <iostream>
+#include "AdjacencyMatrix.h"
 
 const float AdjacencyMatrix::EMPTY = -1;
 

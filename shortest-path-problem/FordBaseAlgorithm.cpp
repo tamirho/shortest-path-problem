@@ -1,7 +1,7 @@
 #include "FordBaseAlgorithm.h"
 
-const float FordBaseAlgorithm::Nan = FLT_MIN;
-const int FordBaseAlgorithm::NULL_PARENT = -1;
+const float FordBaseAlgorithm::Nan = -1;
+const int FordBaseAlgorithm::NULL_PARENT = -2;
 
 FordBaseAlgorithm::FordBaseAlgorithm() : m_DistanceFromSrc(nullptr), m_Parent(nullptr), m_NumOfVertices(0), m_SrcVertex(0) {
 }
@@ -40,27 +40,19 @@ float FordBaseAlgorithm::GetWeightOfShortestPathToTarget(int i_Target) const {
         throw std::runtime_error("Error: can't calculate weight before using Process method!");
     }
 
-	float result = m_DistanceFromSrc[i_Target];
-	if (result == Nan) {
-		std::string msg = "No path from " + std::to_string(m_SrcVertex) + " to " + std::to_string(i_Target);
-		throw std::exception(msg.c_str());
-	}
-    
-    return result;
+    return m_DistanceFromSrc[i_Target];
 }
 
 std::string FordBaseAlgorithm::GetWeightOfShortestPathToTargetAsString(int i_Target) const {
 	std::string result = "";
-	
-	try {
-		result = std::to_string(GetWeightOfShortestPathToTarget(i_Target));
-	}
-	catch (const std::runtime_error& error) {
-		throw;
-	}
-	catch (const std::exception& error) {
-		result = error.what();
-	}
+    float weight = GetWeightOfShortestPathToTarget(i_Target);
+    
+    if (weight == Nan) {
+        result = "No path from " + std::to_string(m_SrcVertex) + " to " + std::to_string(i_Target);
+    }
+    else {
+        result = std::to_string(weight);
+    }
 
 	return result;
 }
