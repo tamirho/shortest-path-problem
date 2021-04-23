@@ -16,7 +16,7 @@ class Program
 private:
     Program() = default;
     // Get one of the algorithms and a graph, run and meassure the algorithm on the current grpah.
-    static void RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Traget, std::ostream& i_OutFile);
+    static void RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Target, std::ostream& i_OutFile);
 public:
     /*
      Function that runs that open the input files, builds 2 grpahs, and run the algorithms for each graph.

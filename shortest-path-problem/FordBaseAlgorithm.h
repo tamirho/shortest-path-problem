@@ -11,7 +11,7 @@
  */
 class FordBaseAlgorithm {
     
-protected:
+public:
     static const float Nan;
 	static const int NULL_PARENT;
 

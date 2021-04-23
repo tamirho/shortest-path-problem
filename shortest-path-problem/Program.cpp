@@ -58,7 +58,7 @@ void Program::Run(const char* i_Inputfile, const char* i_Outputfile) {
 }
 
 
-void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Traget, ostream& i_OutFile)
+void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, const Graph& i_Graph, int i_Src, int i_Target, ostream& i_OutFile)
 {
     auto start = chrono::high_resolution_clock::now();
     
@@ -73,11 +73,20 @@ void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, co
     double time_taken = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
     time_taken *= 1e-9;
     
+    
     // Screen output
     cout << i_Graph.GetGraphType() << " ";
     cout << i_AlgorithmFunction.GetAlgorithmName() << " ";
-	cout << i_AlgorithmFunction.GetWeightOfShortestPathToTargetAsString(i_Traget) << endl;
+    float weight = i_AlgorithmFunction.GetWeightOfShortestPathToTarget(i_Target);
     
+    if (weight == FordBaseAlgorithm::Nan) {
+        cout <<  "No path from " << std::to_string(i_Src) << " to " << std::to_string(i_Target) << endl;
+    }
+    else {
+        cout << fixed << setprecision(3) << weight << endl;
+    }
+
+
     if (!i_OutFile) {
         throw std::invalid_argument("Error with output file!");
     }
@@ -86,6 +95,6 @@ void Program::RunAndMeassureAlgorithm(FordBaseAlgorithm& i_AlgorithmFunction, co
     i_OutFile << "Time taken by function ";
     i_OutFile << i_Graph.GetGraphType() << " ";
     i_OutFile << i_AlgorithmFunction.GetAlgorithmName() << " is : ";
-    i_OutFile << fixed << time_taken << setprecision(9);
+    i_OutFile << fixed << setprecision(9) << time_taken;
     i_OutFile << " sec" << endl;
 }
