@@ -14,7 +14,8 @@ class FordBaseAlgorithm {
 public:
     static const float Nan;
 	static const int NULL_PARENT;
-
+    
+protected:
     float* m_DistanceFromSrc;
     int* m_Parent;
     int	 m_NumOfVertices;
