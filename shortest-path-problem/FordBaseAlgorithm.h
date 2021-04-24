@@ -11,14 +11,18 @@
  */
 class FordBaseAlgorithm {
     
+public:
+    static const float Nan;
+	static const int NULL_PARENT;
+    
 protected:
-    static const int Nan = INT_MIN;
-    int* m_DistanceFromSrc;
+    float* m_DistanceFromSrc;
     int* m_Parent;
     int	 m_NumOfVertices;
-    
+	int m_SrcVertex;
+
     virtual void Init(int i_SrcVertex);
-    virtual void Relax(int i_Src, int i_Dest, int i_Weight) = 0;
+    virtual void Relax(int i_Src, int i_Dest, float i_Weight) = 0;
     virtual void ClearData();
 public:
     FordBaseAlgorithm();
@@ -35,8 +39,14 @@ public:
     /*
      This method returns the lightes path from i_Src to i_Target
      Inputs: i_Target - int (represent vertex)
-     Output: weight of shortest path - int (where MIN_INT represent that there is no path to target)
+     Output: weight of shortest path - float (where Nan represent that there is no path to target)
      */
-    virtual int GetWeightOfShortestPathToTarget(int i_Target) const;
-    
+    virtual float GetWeightOfShortestPathToTarget(int i_Target) const;
+
+	/*
+	 This method returns the lightes path from i_Src to i_Target as a string using
+	 the 'GetWeightOfShortestPathToTarget' method
+	 If there is no path it will return a message
+	 */
+	virtual std::string GetWeightOfShortestPathToTargetAsString(int i_Target) const;
 };

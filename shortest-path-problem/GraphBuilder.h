@@ -25,6 +25,9 @@ private:
     
     // A function for verifying and converting from a string to an Edge (src, dest, weight).
     static Edge getEdgeFromLine(const std::string& i_Str);
+
+	// A function that checks if a row consists of white spaces only.
+	static bool isWhiteSpacesOnly(const std::string& i_Line);
     
 public:
     

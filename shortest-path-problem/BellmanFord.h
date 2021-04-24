@@ -5,7 +5,7 @@
  The algorithem pares N-1 times the graph's edges, and make a 'Relax' improvement */
 class BellmanFord : public FordBaseAlgorithm {
 protected:
-    void Relax(int i_Src, int i_Dest, int i_Weight) override;
+    void Relax(int i_Src, int i_Dest, float i_Weight) override;
 public:
     BellmanFord() = default;
     virtual ~BellmanFord();
