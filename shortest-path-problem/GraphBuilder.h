@@ -29,6 +29,7 @@ private:
 	// A function that checks if a row consists of white spaces only.
 	static bool isWhiteSpacesOnly(const std::string& i_Line);
     
+    static std::string getLineNotEmpty(std::ifstream& i_InputFile);
 public:
     
     /*
@@ -42,4 +43,5 @@ public:
      Output: A pointer to a new Adjacency Matrix (Graph) that consists of the details in the file given
      */
     static Graph* BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target);
+
 };
