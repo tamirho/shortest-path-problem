@@ -9,9 +9,9 @@ void GraphBuilder::buildGraphFromFile(Graph& io_Graph, std::ifstream& i_InputFil
         throw std::invalid_argument("Error with input file!");
     }
     
-    std::getline(i_InputFile, line);
+    line = getLineNotEmpty(i_InputFile);
     o_Source = getIntFromLine(line);
-    std::getline(i_InputFile, line);
+    line = getLineNotEmpty(i_InputFile);
     o_Target = getIntFromLine(line);
 
 	if (!io_Graph.IsValidVertex(o_Source) || !io_Graph.IsValidVertex(o_Target)) {
@@ -50,7 +50,7 @@ bool GraphBuilder::isWhiteSpacesOnly(const std::string& i_Line) {
 
 Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     std::string line;
-    std::getline(i_InputFile, line);
+    line = getLineNotEmpty(i_InputFile);
     int numOfVertices = getIntFromLine(line);
     
     Graph* newGraph = new AdjacencyList(numOfVertices);
@@ -61,7 +61,7 @@ Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Sou
 
 Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
     std::string line;
-    std::getline(i_InputFile, line);
+    line = getLineNotEmpty(i_InputFile);
     int numOfVertices = getIntFromLine(line);
     
     Graph* newGraph = new AdjacencyMatrix(numOfVertices);
@@ -96,4 +96,16 @@ Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
         }
     }
     throw std::invalid_argument("Error with input file structre!");
+}
+
+
+std::string GraphBuilder::getLineNotEmpty(std::ifstream& i_InputFile) {
+    std::string line;
+    std::getline(i_InputFile, line);
+
+    while(isWhiteSpacesOnly(line) && !i_InputFile.eof()) {
+        std::getline(i_InputFile, line);
+    }
+    
+    return line;
 }

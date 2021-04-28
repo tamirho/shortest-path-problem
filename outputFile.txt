@@ -1,6 +1,6 @@
-Time taken by function Adjacency Dijkstra heap is : 0.000012075 sec
-Time taken by function Adjacency Dijkstra array is : 0.000010915 sec
-Time taken by function Adjacency Bellman Ford is : 0.000012019 sec
-Time taken by function Matrix Dijkstra heap is : 0.000011221 sec
-Time taken by function Matrix Dijkstra array is : 0.000011189 sec
-Time taken by function Matrix Bellman Ford is : 0.000012825 sec
+Time taken by function Adjacency Dijkstra heap is : 0.000006312 sec
+Time taken by function Adjacency Dijkstra array is : 0.000004660 sec
+Time taken by function Adjacency Bellman Ford is : 0.000004248 sec
+Time taken by function Matrix Dijkstra heap is : 0.000004842 sec
+Time taken by function Matrix Dijkstra array is : 0.000004240 sec
+Time taken by function Matrix Bellman Ford is : 0.000004157 sec
