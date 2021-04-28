@@ -49,8 +49,7 @@ bool GraphBuilder::isWhiteSpacesOnly(const std::string& i_Line) {
 }
 
 Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
-    std::string line;
-    line = getLineNotEmpty(i_InputFile);
+    std::string line = getLineNotEmpty(i_InputFile);
     int numOfVertices = getIntFromLine(line);
     
     Graph* newGraph = new AdjacencyList(numOfVertices);
@@ -60,8 +59,7 @@ Graph* GraphBuilder::BuildAdjListFromFile(std::ifstream& i_InputFile, int& o_Sou
 }
 
 Graph* GraphBuilder::BuildAdjMatrixFromFile(std::ifstream& i_InputFile, int& o_Source, int& o_Target) {
-    std::string line;
-    line = getLineNotEmpty(i_InputFile);
+    std::string line = getLineNotEmpty(i_InputFile);
     int numOfVertices = getIntFromLine(line);
     
     Graph* newGraph = new AdjacencyMatrix(numOfVertices);
@@ -100,7 +98,7 @@ Edge GraphBuilder::getEdgeFromLine(const std::string& i_Str) {
 
 
 std::string GraphBuilder::getLineNotEmpty(std::ifstream& i_InputFile) {
-    std::string line;
+    std::string line = "";
     std::getline(i_InputFile, line);
 
     while(isWhiteSpacesOnly(line) && !i_InputFile.eof()) {
